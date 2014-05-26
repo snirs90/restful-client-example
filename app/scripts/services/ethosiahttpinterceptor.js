@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('ethosiaClientApp')
-  .factory('ethosiaHttpInterceptor', function ($q, BACKEND_URL) {
+angular.module('myApp')
+  .factory('restfulHttpInterceptor', function ($q, BACKEND_URL) {
     // Public API here
     return {
       /**
