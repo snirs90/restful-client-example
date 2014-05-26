@@ -1,4 +1,4 @@
-[![Build Status](https://magnum.travis-ci.com/Gizra/ethosia-client.svg?token=p2M1EeCrd3dY32WxWj3X&branch=master)](https://magnum.travis-ci.com/snirs90/restful-client-example)
+[![Build Status](https://travis-ci.org/snirs90/restful-client-example.svg?branch=master)](https://travis-ci.org/snirs90/restful-client-example)
 
 Restful Client example
 ==============
