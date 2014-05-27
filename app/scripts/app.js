@@ -6,13 +6,22 @@ angular
     'ngResource',
     'ngSanitize',
     'ngRoute',
-    'apiMock'
+    'apiMock',
+    'ngStorage'
   ])
   .config(function ($routeProvider, apiMockProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
+      })
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl'
+      })
+      .when('/dashboard', {
+        templateUrl: 'views/dashboard.html',
+        controller: 'DashboardCtrl'
       })
       .otherwise({
         redirectTo: '/'
