@@ -1,29 +1,39 @@
 'use strict';
 
 angular.module('myApp')
-  .controller('LoginCtrl', ['$scope', '$cookies', 'Security', 'User',  function($scope, $cookies, Security, User) {
-    $scope.user = {};
+  .controller('LoginCtrl', ['$scope', '$cookies', '$location', 'Auth', 'User', function($scope, $cookies, $location, Auth, User) {
 
+    Auth.status(function() {
+      if (User.getUserDetails().status == true) {
+        $location.url('/dashboard');
+      }
+      else {
+
+      }
+    },
+    function() {
+      User.clear();
+    });
+
+    $scope.user = {};
+    $scope.login_error = null;
 
     $scope.login = function() {
-      Security.login($scope.user).then(function(data) {
-        console.log(data);
-        if (data.status !== "undefined" && data.token) {
-          User.setUserDetails(data);
-        }
-      }, function(data, status, headers, config) {
-        console.log("Error: ");
-        console.table(data, status, headers, config);
-      });
-        //, function(res) {
-        // Success.
 
-      /*  },
-      function(res) {
-        // Error.
+      Auth.login($scope.user)
+        .success(function(data) {
+          if (!data.error) {
+            User.setUserDetails(data);
 
-        console.log('Error in login');
-      });*/
+            $location.url('/dashboard');
+          }
+          else {
+            $scope.login_error = data.description;
+          }
+        })
+        .error(function(data, status, headers, config) {
+          $scope.login_error = 'Login failed.';
+        });
     }
 
   }]);
